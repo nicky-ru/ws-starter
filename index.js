@@ -10,11 +10,11 @@ const API_KEY = process.env.API_KEY;
 // If server response is slow or results in 5xx, decrease this value
 const BATCH_MAX = 1000;
 // If server response is slow or results in 5xx, increase this value
-const INTERVAL = 1000;
+const INTERVAL_MS = 1000;
 
 const client = new W3bstreamClient(URL, API_KEY, {
   batchMax: BATCH_MAX,
-  interval: INTERVAL,
+  publishIntervalMs: INTERVAL_MS,
 });
 
 const events = devices.map(({id, lat, lng}) => {
