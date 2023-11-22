@@ -6,7 +6,16 @@ import devices from "./devices.json" assert { type: "json" }
 const URL = process.env.URL;
 const API_KEY = process.env.API_KEY;
 
-const client = new W3bstreamClient(URL, API_KEY);
+// Optional configuration, adjust to your needs:
+// If server response is slow or results in 5xx, decrease this value
+const BATCH_MAX = 1000;
+// If server response is slow or results in 5xx, increase this value
+const INTERVAL = 1000;
+
+const client = new W3bstreamClient(URL, API_KEY, {
+  batchMax: BATCH_MAX,
+  interval: INTERVAL,
+});
 
 const events = devices.map(({id, lat, lng}) => {
   const header = {
